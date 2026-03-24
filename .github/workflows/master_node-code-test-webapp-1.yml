@@ -33,6 +33,7 @@ jobs:
         with:
           name: node-app
           path: .
+          include-hidden-files: true
 
   deploy:
     runs-on: ubuntu-latest
@@ -61,4 +62,5 @@ jobs:
           app-name: 'node-code-test-webapp-1'
           slot-name: 'Production'
           package: .
+          startup-command: 'npm start'
           
