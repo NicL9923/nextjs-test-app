@@ -51,15 +51,15 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.__clientidsecretname__ }}
-          tenant-id: ${{ secrets.__tenantidsecretname__ }}
-          subscription-id: ${{ secrets.__subscriptionidsecretname__ }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_D58DA3936B8245859362DE019BC481A0 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_F25B166261B64928A7C8B94DA9D9E971 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_5F9E3C435E2A4F428C6F62CC27D6B975 }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'nl-testwebapp-1'
-          slot-name: 'production'
+          slot-name: 'Production'
           package: .
           
