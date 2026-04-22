@@ -6,7 +6,7 @@ name: Build and deploy Node.js app to Azure Web App - nl-testwebapp-1
 on:
   push:
     branches:
-      - master
+      - main
   workflow_dispatch:
 
 jobs:
@@ -25,7 +25,8 @@ jobs:
 
       - name: npm install, build, and test
         run: |
-          npm install
+          npm ci
+          (cd client && npm ci)
           npm run build --if-present
           npm run test --if-present
 
@@ -47,7 +48,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: node-app
-      
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -62,4 +63,3 @@ jobs:
           app-name: 'nl-testwebapp-1'
           slot-name: 'asdadsa'
           package: .
-          
