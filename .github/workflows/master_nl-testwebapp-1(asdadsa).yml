@@ -25,7 +25,8 @@ jobs:
 
       - name: npm install, build, and test
         run: |
-          npm install
+          npm ci
+          (cd client && npm ci)
           npm run build --if-present
           npm run test --if-present
 
@@ -62,4 +63,3 @@ jobs:
           app-name: 'nl-testwebapp-1'
           slot-name: 'asdadsa'
           package: .
-          
