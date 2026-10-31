@@ -9,10 +9,11 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
         with:
           node-version-file: .nvmrc
+          check-latest: true
           cache: npm
           cache-dependency-path: |
             package-lock.json
@@ -21,3 +22,5 @@ jobs:
       - run: npm ci --prefix client
       - run: npm run lint --prefix client
       - run: npm run build
+      - run: npm test
+      - run: npm audit --omit=dev && npm audit --omit=dev --prefix client
