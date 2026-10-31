@@ -14,9 +14,13 @@ app.get("/api/health", (_req, res) => {
 
 // SPA fallback
 app.get("/{*splat}", (_req, res) => {
-  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+  res.sendFile("index.html", { root: path.join(__dirname, "client", "dist") });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+
+module.exports = app;
